@@ -1,6 +1,7 @@
 package com.zyou.askphone;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -12,56 +13,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.zyou.askphone.databinding.ActivityMainBinding;
 
-    private EditText mInputPhoneEt;
-    private LinearLayout mAskLl;
-    private LinearLayout mThanksLl;
-    private TextView mInputContentTv;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+    private ActivityMainBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        mBinding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main);
-
-        mInputPhoneEt=(EditText)findViewById(R.id.et_input_phone);
-        mAskLl=(LinearLayout)findViewById(R.id.ll_ask);
-        mThanksLl=(LinearLayout)findViewById(R.id.ll_thanks);
-        mInputContentTv=(TextView)findViewById(R.id.tv_phone);
-    }
-
-    public void onClick(View view){
-        switch (view.getId()){
-            case R.id.btn_save:
-                String inputContent=mInputPhoneEt.getText().toString();
-                if(TextUtils.isEmpty(inputContent)){
-                    Toast.makeText(this,"输入不能为空哦",Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                mInputContentTv.setText(inputContent);
-                mAskLl.setVisibility(View.GONE);
-                mThanksLl.setVisibility(View.VISIBLE);
-
-                hideKeyboard(this,mInputPhoneEt);
-
-                break;
-        }
     }
 
     @Override
-    public void onBackPressed() {
-    }
-
-    /**
-     * 隐藏输入面板
-     * @param context
-     * @param input
-     */
-    public static void hideKeyboard(final Context context, final EditText input) {
-        final InputMethodManager imm = (InputMethodManager) context
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(input.getWindowToken(), 0);
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_ask_phone:
+                startActivity(new Intent(this,AskPhoneActivity.class));
+                break;
+            case R.id.btn_show_big_text:
+                String text=mBinding.etInputText.getText().toString();
+                if(TextUtils.isEmpty(text)){
+                    Toast.makeText(this,R.string.click_input_content,Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+                BigTextActivity.startActivity(this,text);
+                break;
+        }
     }
 }
