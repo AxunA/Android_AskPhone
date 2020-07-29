@@ -27,11 +27,12 @@ public class BigTextActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mBinding= ActivityBigTextBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_big_text);
+        setContentView(mBinding.getRoot());
 
         Intent intent=getIntent();
         String text=intent.getStringExtra(INTENT_TEXT);
         Log.d("fzy","text:"+text);
+
         mBinding.tvBigText.setText(text);
     }
 

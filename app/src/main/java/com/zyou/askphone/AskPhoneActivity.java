@@ -21,7 +21,7 @@ public class AskPhoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mBinding=ActivityAskPhoneBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_ask_phone);
+        setContentView(mBinding.getRoot());
     }
 
     public void onClick(View view){

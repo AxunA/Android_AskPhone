@@ -3,7 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2b2b2b"
     android:padding="@dimen/activity_margin">
 
     <Button
@@ -27,7 +26,7 @@
         android:layout_marginTop="@dimen/comm_margin_normal"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:text="小姐姐交个朋友好吗？"
+        android:text="你好，你的电话号码是?"
         android:hint="@string/click_input_content"
         android:inputType="number"/>
 
